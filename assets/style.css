@@ -1,0 +1,235 @@
+/* hiddenstepsmemorymaze.com – eine Datei für alle Seiten. Schrift lokal (kein Google-Fonts-Abruf, DSGVO).
+   Farben wie im Spiel: heller Boden, Salbei, Elfenbein, warmes Grau. */
+@font-face {
+  font-family: "Inter";
+  src: url("Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("Inter-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root {
+  --boden: #f7f5f1;
+  --bild: #e9e6e1;
+  --elfenbein: #f3f0ec;
+  --karte: #ffffff;
+  --salbei: #c9cfbc;
+  --salbei-hell: #e4e8dc;
+  --salbei-dunkel: #5d6b4b;
+  --tinte: #4a4b4d;
+  --titel: #55565a;
+  --leise: #6b6b6c;
+  --linie: #e2ded7;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--boden);
+  color: var(--tinte);
+  font: 17px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a { color: var(--salbei-dunkel); text-underline-offset: 2px; }
+a:hover { color: var(--tinte); }
+
+/* Kopfzeile */
+.top {
+  background: var(--elfenbein);
+  border-bottom: 1px solid var(--linie);
+}
+.top__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--titel);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -0.2px;
+}
+.top__brand img { width: 40px; height: 40px; border-radius: 10px; }
+.top nav { margin-left: auto; display: flex; gap: 18px; flex-wrap: wrap; }
+.top nav a { color: var(--leise); text-decoration: none; font-weight: 600; font-size: 15px; }
+.top nav a:hover, .top nav a[aria-current="page"] { color: var(--salbei-dunkel); }
+
+/* Sprachauswahl EN | DE: führt zur selben Seite in der anderen Sprache. Reine Links, kein Skript, nichts wird gespeichert. */
+.lang {
+  display: flex;
+  flex: none;
+  border: 1px solid var(--salbei);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--karte);
+}
+.lang a {
+  padding: 10px 13px;
+  color: var(--leise);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+.lang a:hover { color: var(--salbei-dunkel); }
+.lang a[aria-current="true"] { background: var(--salbei); color: var(--tinte); }
+
+/* Titelbild */
+.hero { background: var(--bild); }
+.hero img { display: block; width: 100%; max-width: 1400px; margin: 0 auto; height: auto; }
+
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+}
+
+h1, h2, h3 { color: var(--titel); font-weight: 600; letter-spacing: -0.3px; line-height: 1.2; }
+h1 { font-size: 40px; margin: 0 0 8px; }
+h2 { font-size: 26px; margin: 40px 0 10px; }
+h3 { font-size: 18px; margin: 24px 0 4px; letter-spacing: 0; }
+
+.motto {
+  margin: 0 0 12px;
+  color: var(--salbei-dunkel);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.lead { font-size: 20px; color: var(--leise); margin-top: 0; }
+.stand { color: var(--leise); font-size: 15px; }
+
+/* Store-Hinweis */
+.store {
+  display: inline-block;
+  margin: 8px 0 0;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--salbei);
+  color: var(--tinte);
+  font-weight: 600;
+  text-decoration: none;
+}
+a.store:hover { background: var(--salbei-dunkel); color: #fff; }
+
+/* So geht's: drei Schritte */
+.schritte {
+  list-style: none;
+  counter-reset: schritt;
+  padding: 0;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.schritte li {
+  counter-increment: schritt;
+  background: var(--karte);
+  border: 1px solid var(--linie);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+.schritte li::before {
+  content: counter(schritt);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: var(--salbei-hell);
+  color: var(--salbei-dunkel);
+  font-weight: 600;
+}
+.schritte strong { display: block; color: var(--titel); font-size: 18px; }
+.schritte p { margin: 4px 0 0; }
+
+/* Bildschirmfotos */
+.fotos {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 28px 0;
+}
+.fotos figure { margin: 0; flex: 0 1 253px; text-align: center; }
+.fotos img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  border: 1px solid var(--linie);
+  box-shadow: 0 10px 30px rgba(74, 75, 77, 0.12);
+}
+.fotos figcaption { margin-top: 10px; color: var(--leise); font-size: 15px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.card {
+  background: var(--karte);
+  border: 1px solid var(--linie);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+.card strong { display: block; color: var(--salbei-dunkel); font-size: 19px; font-weight: 600; }
+.card p { margin: 4px 0 0; }
+
+.box {
+  background: var(--karte);
+  border-left: 5px solid var(--salbei);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 16px 0;
+}
+
+address { font-style: normal; }
+
+footer {
+  border-top: 1px solid var(--linie);
+  color: var(--leise);
+  font-size: 14px;
+}
+footer .inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+footer a { color: var(--leise); }
+
+/* Schmal: Marke und Sprachauswahl in der ersten Zeile, Menü darunter. */
+@media (max-width: 720px) {
+  .lang { margin-left: auto; }
+  .top nav { order: 3; margin-left: 0; width: 100%; }
+}
+
+@media (max-width: 560px) {
+  h1 { font-size: 32px; }
+  .lead { font-size: 18px; }
+  .fotos { gap: 12px; }
+  .fotos img { border-radius: 18px; }
+}
